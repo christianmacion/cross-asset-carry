@@ -1,0 +1,51 @@
+{
+  "project": "cross-asset-carry",
+  "description": "Cross-asset carry long-short: long top 3 / short bottom 3 by carry, vol-weighted, 5 bps round-trip cost. 8 instruments: 4 FX, 1 bond slope, 3 commodities (Gold, Crude, Copper).",
+  "as_of": "2026-07-09T02:30:10.470357",
+  "data_sources": {
+    "fx_rates": "FRED CSV download with embedded sample fallback (data/fred_sample.csv)",
+    "bond_yields": "FRED CSV download with embedded sample fallback (data/fred_sample.csv)",
+    "commodity_futures": "yfinance with embedded sample fallback (data/futures_sample.csv)",
+    "asset_returns": "Embedded sample: data/returns_sample.csv (FX spot + 10Y ETF total returns not assembled in this public-data build \u2014 see memo.md Honest scope)"
+  },
+  "config": {
+    "top_k": 3,
+    "bottom_k": 3,
+    "weighting": "inverse 60-day realized vol",
+    "transaction_cost_roundtrip_bps": 5,
+    "train_years": "2010-2019",
+    "test_years": "2020-2025"
+  },
+  "in_sample": {
+    "window": 97,
+    "annualized_sharpe": 0.616,
+    "annualized_return": 0.0179,
+    "max_drawdown": -0.0483,
+    "win_rate": 0.598
+  },
+  "out_of_sample": {
+    "window": 57,
+    "annualized_sharpe": -0.78,
+    "annualized_return": -0.0198,
+    "max_drawdown": -0.1175,
+    "win_rate": 0.421
+  },
+  "benchmark_long_only": {
+    "train": {
+      "annualized_sharpe": 0.287,
+      "annualized_return": 0.0127,
+      "max_drawdown": -0.1341
+    },
+    "test": {
+      "annualized_sharpe": -0.607,
+      "annualized_return": -0.0265,
+      "max_drawdown": -0.1879
+    }
+  },
+  "diagnostics": {
+    "is_oos_ratio": -1.266,
+    "oos_positive": false,
+    "oos_exceeds_bench": false
+  },
+  "headline_metric": "Cross-asset carry portfolio: annualized Sharpe 0.62 in-sample \u00b7 OOS Sharpe -0.78 \u00b7 max DD -4.8% (long top 3 / short bottom 3 by carry, vol-weighted, 5 bps cost)."
+}

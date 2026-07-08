@@ -1,0 +1,24 @@
+cross-asset-carry — backtest report
+==============================================================================
+  Date run: 2026-07-09T02:30:12.054969
+  Window:   2010-04-01 → 2025-05-01 (154 monthly obs)
+
+  Instruments (8):
+     - EUR_USD
+     - JPY_USD
+     - GBP_USD
+     - AUD_USD
+     - US_SLOPE
+     - GC=F
+     - CL=F
+     - HG=F
+
+  In-sample  (pre-2020): Sharpe 0.62 · Ann.Ret +1.79% · MaxDD -4.83% · n = 97
+  Out-of-sample (post-2019): Sharpe -0.78 · Ann.Ret -1.98% · MaxDD -11.75% · n = 57
+
+  Benchmark long-only equal-weight:
+     train: Sharpe 0.29 · Ann.Ret +1.27%
+     test : Sharpe -0.61 · Ann.Ret -2.65%
+
+  Honest verdict:
+     OOS Sharpe -0.78 ≤ 0 — no edge in out-of-sample test.
